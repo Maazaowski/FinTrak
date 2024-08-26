@@ -1,11 +1,12 @@
+// src/components/Invoices.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const InvoiceList = () => {
+const Invoices = () => {
   const [invoices, setInvoices] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/invoices')  // Correct endpoint URL
+    axios.get('http://localhost:3000/invoices')
       .then((response) => setInvoices(response.data))
       .catch((error) => console.error('Error fetching invoices:', error));
   }, []);
@@ -24,4 +25,4 @@ const InvoiceList = () => {
   );
 };
 
-export default InvoiceList;
+export default Invoices;

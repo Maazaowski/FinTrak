@@ -1,4 +1,3 @@
-// src/components/Dashboard.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -6,7 +5,9 @@ const Dashboard = () => {
   const [totalIncome, setTotalIncome] = useState(0);
 
   useEffect(() => {
-    axios.get('/dashboard').then((response) => setTotalIncome(response.data.totalIncome));
+    axios.get('http://localhost:3000/dashboard')  // Correct endpoint URL
+      .then((response) => setTotalIncome(response.data.totalIncome))
+      .catch((error) => console.error('Error fetching dashboard data:', error));
   }, []);
 
   return (
