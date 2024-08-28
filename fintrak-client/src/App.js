@@ -4,6 +4,7 @@ import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import Dashboard from './components/Dashboard';
 import Invoices from './components/Invoices';
+import InvoiceForm from './components/InvoiceForm';
 import './App.css';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/invoices" element={<Invoices />} />
+              <Route path="/new-invoice" element={<InvoiceForm />} />
             </Routes>
           </div>
         </div>

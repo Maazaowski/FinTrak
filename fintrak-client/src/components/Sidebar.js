@@ -9,6 +9,7 @@ const Sidebar = () => {
       <ul>
         <li><Link to="/">Dashboard</Link></li>
         <li><Link to="/invoices">Invoices</Link></li>
+        <li><Link to="/new-invoice">Create Invoice</Link></li>
         {/* Add more links as needed */}
       </ul>
     </div>

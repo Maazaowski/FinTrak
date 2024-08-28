@@ -1,6 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
+
 const app = express();
+
+// Use the CORS middleware to allow requests from any origin
+app.use(cors());
 
 // Middleware
 app.use(express.json());

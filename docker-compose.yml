@@ -1,4 +1,3 @@
-# docker-compose.yml
 version: '3.8'
 
 services:
@@ -6,17 +5,34 @@ services:
     image: mongo
     ports:
       - "27017:27017"
+    networks:
+      - fintrak-network
+
   backend:
     build:
-      context: ./fintrak-client
+      context: ./fintrak-backend
+    volumes:
+      - ./fintrak-backend:/app
     ports:
       - "3000:3000"
     depends_on:
       - mongo
+    networks:
+      - fintrak-network
+
   frontend:
     build:
       context: ./fintrak-client
+    volumes:
+      - ./fintrak-client:/app  # Bind mount for hot reloading
+      - /app/node_modules       # Prevent overwriting node_modules
     ports:
       - "3001:3000"
     depends_on:
       - backend
+    networks:
+      - fintrak-network
+
+networks:
+  fintrak-network:
+    driver: bridge
