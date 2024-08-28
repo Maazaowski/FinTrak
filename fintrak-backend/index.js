@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const http = require('http');
+const WebSocket = require('ws');
 
 const app = express();
 
@@ -14,6 +16,10 @@ app.use(express.json());
 mongoose.connect('mongodb://mongo:27017/invoices', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+}).then(() => {
+  console.log('MongoDB connected successfully');
+}).catch(err => {
+  console.log('MongoDB connection error:', err);
 });
 
 // Invoice schema and model
@@ -43,7 +49,33 @@ app.get('/dashboard', async (req, res) => {
   res.json({ totalIncome });
 });
 
+// Create an HTTP server
+const server = http.createServer(app);
+
+// Set up WebSocket server on the HTTP server
+const wss = new WebSocket.Server({ server, path: '/ws' });
+
+// WebSocket connection handler
+wss.on('connection', (ws) => {
+  console.log('Client connected via WebSocket');
+
+  ws.on('message', (message) => {
+    console.log(`Received message: ${message}`);
+    // Broadcast the message to all connected clients
+    wss.clients.forEach((client) => {
+      if (client.readyState === WebSocket.OPEN) {
+        client.send(message);
+      }
+    });
+  });
+
+  ws.on('close', () => {
+    console.log('Client disconnected');
+  });
+});
+
+// Start the HTTP server
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
