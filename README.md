@@ -27,7 +27,7 @@ FinTrak is a web application built with Node.js and React.js to manage invoices.
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-username/fintrak.git
+   git clone https://github.com/Maazaowski/FinTrak.git
    cd fintrak
    ```
 
@@ -48,7 +48,7 @@ FinTrak is a web application built with Node.js and React.js to manage invoices.
 
 - Navigate to the backend directory:
   ```bash
-  cd invoice-app
+  cd fintrak-backend
   ```
 - Install dependencies:
   ```bash
@@ -63,7 +63,7 @@ FinTrak is a web application built with Node.js and React.js to manage invoices.
 
 - Navigate to the frontend directory:
   ```bash
-  cd invoice-client
+  cd fintrak-client
   ```
 - Install dependencies:
   ```bash
