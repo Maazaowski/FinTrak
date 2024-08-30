@@ -1,0 +1,11 @@
+.testimonials-container {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #fff;
+  }
+  
+  .testimonial {
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+  
