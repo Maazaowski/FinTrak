@@ -32,6 +32,8 @@ services:
       - backend
     networks:
       - fintrak-network
+    environment:
+      - NODE_OPTIONS=--openssl-legacy-provider  # Set NODE_OPTIONS for frontend
 
 networks:
   fintrak-network:

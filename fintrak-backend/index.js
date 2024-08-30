@@ -7,7 +7,9 @@ const WebSocket = require('ws');
 const app = express();
 
 // Use the CORS middleware to allow requests from any origin
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:3001',  // Allow requests from this origin
+}));
 
 // Middleware
 app.use(express.json());
