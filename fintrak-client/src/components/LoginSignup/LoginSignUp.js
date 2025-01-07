@@ -1,25 +1,26 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { GoogleLogin } from '@react-oauth/google';
-import './LoginSignUp.css'; // Add custom styles if needed
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext'; // Import the AuthContext
+import './LoginSignUp.css';
 
 const LoginSignUp = () => {
+  const navigate = useNavigate();
+  const { setIsLoggedIn } = useContext(AuthContext); // Get the login state setter
+
   const handleGoogleSuccess = (credentialResponse) => {
     console.log('Google login successful:', credentialResponse);
-    // Handle successful login with Google here (e.g., send token to backend)
+    setIsLoggedIn(true); // Update the login state
+    navigate('/app/dashboard'); // Redirect to dashboard
   };
 
   const handleGoogleFailure = (error) => {
     console.error('Google login failed:', error);
-    // Handle failed login attempt
   };
 
   return (
     <div className="login-signup-container">
       <h2>Login / Sign Up</h2>
-      <div className="auth-buttons">
-        <button className="login-button">Log In</button>
-        <button className="signup-button">Sign Up</button>
-      </div>
       <GoogleLogin
         onSuccess={handleGoogleSuccess}
         onError={handleGoogleFailure}
